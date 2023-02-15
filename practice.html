@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>registration from</title>
+
+    <style>
+        h1{
+            font-family:'sans-serif';
+            font-weight: bolder;
+        }
+        form{
+            font-family: 'sans-serif';
+            font-weight: 900;
+        }
+        body{
+            background-color: rgb(3, 3, 3);
+        }
+        div{
+            background-color: rgb(233, 189, 139);
+            width: 580px;
+            height: absolute 710px;
+            padding: 30px 20px 20px 20px;
+            margin: 10px auto;
+            border-radius: 5px;
+        }
+        .box{
+            width: 100%;
+        }
+        .GreenButton{
+            width: 100px;
+            height: 25px;
+            background-color: green;
+            color: white;
+            border: 0;
+        }
+        .RedButton{
+            width: 100px;
+            height: 25px;
+            background-color: red;
+            color: white;
+            border: 0;
+        }
+        .dot{
+            margin: 10px 10px 10px 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        <h1><center>Registration Form </center></h1>
+            <form class="form">
+                First Name:
+                <input type="text" class="box" name="firstname"><br><br>
+                
+               Last Name:
+                <input type="text" class="box" name="lastname"><br><br>
+        
+                Nick Name:
+                <input type="text" class="box" name="nickname"><br><br>
+        
+                Email:
+                <input type="email" class="box" name="email"><br><br>
+        
+               Password:
+                <input type="password" class="box" name="pw"><br><br>
+        
+                Date of Birth:
+                <input type="date" class="box" name="bday"><br><br>
+        
+                <label for="gender">Gender:</label><br>
+                
+                    <input id="M" type="radio" name="gender">
+                    <label for="M">Male</label> 
+                    <input id="F" type="radio" name="gender">
+                    <label for="F">Female</label>
+                    <input id="O" type="radio" name="gender">
+                    <label for="O">Other</label><br><br>
+               
+                
+                <label for="mobilenum">Mobile:</label><br>
+                <input type="number" name="mobilenum"><br><br>
+        
+                <label for="">Address:</label><br>
+                <textarea type="address" class="box" value="address" cols="30" rows="10"></textarea><br> <br>
+               
+                    <button class="GreenButton" name="submit" type="submit">Submit</button>
+                    <button class="RedButton" name="reset" type="reset">Reset</button>
+                
+            </form>
+    </div>
+
+</body>
+
+    <script>
+const form = document.querySelector('.form');
+const submitButton = form.querySelector('button[type="submit"]');
+const successMessage = '<p style="color:green">Hooray! Your account has been successfully created.</p>';
+
+submitButton.addEventListener('click', function(event) {
+  event.preventDefault();
+
+  var passwordInput = form.querySelector('input[name="pw"]');
+
+  var bdayInput = form.querySelector('input[name="bday"]');
+
+  var password = passwordInput.value;
+
+  var birth = new Date(bdayInput.value);
+
+  var agecomputation = Date.now() - birth.getTime();
+
+  var ageDate = new Date(agecomputation);
+
+  var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  
+  if (password.length < 8) {
+    passwordInput.insertAdjacentHTML('afterend', '<p style="color:red">Password must be at least 8 characters.</p>');
+    return;
+  }
+  
+  if (age < 21) {
+    bdayInput.insertAdjacentHTML('afterend', '<p style="color:red">Minors are not allowed!</p>');
+    return;
+  }
+  
+  form.insertAdjacentHTML('beforebegin', successMessage);
+});
+    </script>
+    
+</body>
